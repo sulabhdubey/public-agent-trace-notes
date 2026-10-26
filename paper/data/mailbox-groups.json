@@ -1,0 +1,40 @@
+{
+  "extractable_reports": 16,
+  "distinct_pairs": 4,
+  "groups": [
+    {
+      "opaque_join_id": "literal-pair-1",
+      "report_ids": [
+        "10db6aa8-4535-4de2-81b8-5821f68dbd3b",
+        "2d1b2a1a-6bfd-4259-912e-c3015ea0d829",
+        "4f098c58-7d36-46c5-a3be-37a78b9bce22",
+        "65a4a895-2e59-4b9f-a63f-c33221a34b81",
+        "6c95b38f-54e1-4c26-a330-182c72e5ee28",
+        "6f41fb33-b562-4909-bd93-9fa5018b4188",
+        "7d7f7615-e6fa-4f55-94cb-8d66f5037f14",
+        "8b60aede-2389-48f5-9acf-75b0d4fc9800",
+        "bd6d96bf-d92b-4b4d-b0a5-3d5d9fb6a704",
+        "c13e1994-2061-4dda-bc8b-003ac9a956a7",
+        "ca177082-0b1e-41ac-b83d-74bcaa6b69a3",
+        "efd990a6-98d6-4c01-9a40-5b22180ac05f"
+      ],
+      "distinct_exact_programs": 2,
+      "first_to_last_report_dates": [
+        "2026-06-19T12:29:38Z",
+        "2026-06-19T12:49:35Z"
+      ]
+    },
+    {
+      "opaque_join_id": "literal-pair-2",
+      "report_ids": [
+        "11bfa06b-8dc4-4ba5-84e3-16c3538bab03",
+        "63f71372-2cc8-4133-970a-cb1d6f001592"
+      ],
+      "distinct_exact_programs": 2,
+      "first_to_last_report_dates": [
+        "2026-06-14T22:58:10Z",
+        "2026-06-14T23:22:19Z"
+      ]
+    }
+  ]
+}

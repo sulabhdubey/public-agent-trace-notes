@@ -1,0 +1,189 @@
+{
+  "schema": "pta-offline-audit-v2",
+  "date": "2026-10-26",
+  "original_package_sha256": "ad322de9706d24c50a55e79bfb48c1c3a6f2342b88cfbaf45cd7b4390d31ebcd",
+  "raw_extraction_semantically_equal": true,
+  "report_count": 71,
+  "exact_program_count": 42,
+  "duplicate_program_groups": 8,
+  "repeated_captures_beyond_first": 29,
+  "reports_recording_post_2xx": 13,
+  "programs_recording_post_2xx": 8,
+  "post_event_count": 56,
+  "post_missing_status_events": 22,
+  "post_status_counts": {
+    "307": 8,
+    "200": 9,
+    "400": 9,
+    "201": 1,
+    "422": 1,
+    "429": 2,
+    "204": 3,
+    "401": 1,
+    "": 22
+  },
+  "reports_with_any_post": 48,
+  "reports_with_missing_post_status": 22,
+  "post_2xx_by_endpoint": {
+    "urlquery.net/user/signup": 5,
+    "api.mail.tm/accounts": 1,
+    "api.mail.tm/token": 5,
+    "api.mail.gw/token": 1,
+    "data.browserless.io/auth/v1/otp": 1
+  },
+  "catalog": {
+    "catalog_rows": 38160,
+    "review_required_rows": 432,
+    "background_rows": 79,
+    "review_required_years": {
+      "2023": 113,
+      "2024": 56,
+      "2025": 111,
+      "2026": 152
+    },
+    "review_required_months": {
+      "2023-09": 1,
+      "2023-11": 111,
+      "2023-12": 1,
+      "2024-01": 40,
+      "2024-02": 2,
+      "2024-03": 1,
+      "2024-05": 3,
+      "2024-06": 1,
+      "2024-08": 1,
+      "2024-09": 2,
+      "2024-10": 2,
+      "2024-12": 4,
+      "2025-02": 1,
+      "2025-04": 8,
+      "2025-06": 10,
+      "2025-07": 4,
+      "2025-08": 3,
+      "2025-09": 10,
+      "2025-10": 26,
+      "2025-11": 31,
+      "2025-12": 18,
+      "2026-01": 9,
+      "2026-02": 4,
+      "2026-03": 7,
+      "2026-04": 12,
+      "2026-05": 85,
+      "2026-06": 18,
+      "2026-07": 13,
+      "2026-08": 3,
+      "2026-09": 1
+    },
+    "review_required_classes": {
+      "source_request": 389,
+      "indirection": 43
+    },
+    "review_required_with_source_mapping": 0,
+    "review_required_date_range": [
+      "2023-09-22T16:47:10Z",
+      "2026-09-09T08:54:13Z"
+    ],
+    "indirection_review_date_counts": {
+      "2026-05-11": 40,
+      "2026-05-12": 3
+    },
+    "indirection_review_date_range": [
+      "2026-05-11T07:53:17Z",
+      "2026-05-12T20:35:12Z"
+    ],
+    "review_required_in_additional_cited_table": 0
+  },
+  "wiki_counts": {
+    "revisions": 14591,
+    "records": 13703,
+    "links": 23877,
+    "literal_host_values": 225,
+    "links_url_withheld": 7793,
+    "links_followed_true": 0,
+    "records_body_withheld": 38,
+    "records_hosting_text_changed": 5898,
+    "record_authorship_values": {
+      "not_independently_authenticated": 13703
+    },
+    "coverage_rows": 143,
+    "gap_rows": 110,
+    "specific_gap_true": 58,
+    "gap_rows_zero_selected_texts": 95,
+    "coverage_categories": {
+      "wikis": 30,
+      "pastebins": 37,
+      "shorteners": 23,
+      "documents": 13,
+      "relays": 23,
+      "hosting": 9,
+      "new_discord_posting_surface": 8
+    },
+    "coverage_status": {
+      "selected_agent_related_text_preserved": 48,
+      "responses_preserved_authorship_or_body_unresolved": 24,
+      "no_selected_agent_text_in_compilation": 64,
+      "response_or_reference_only": 7
+    }
+  },
+  "wiki_hash_audit": {
+    "records_hosting_hash_mismatches": 0,
+    "revision_utf8_mismatches": 251,
+    "mismatch_declared_encodings": {
+      "utf8": 250,
+      "latin1": 1
+    },
+    "recovered_by_latin1_byte_encoding": 251,
+    "unresolved_revision_ids": []
+  },
+  "mailbox_extractable": 16,
+  "mailbox_pairs": 4,
+  "cross_program_mailbox_group_sizes": [
+    12,
+    2
+  ],
+  "jobs": [
+    {
+      "job": "package",
+      "returncode": 0,
+      "wall_seconds": 0.4786,
+      "script_sha256": "68590137c354dfe8c7bf049d88f418ac60c994d82bf44fbf49e2559663821ac8"
+    },
+    {
+      "job": "catalog",
+      "returncode": 0,
+      "wall_seconds": 1.677,
+      "script_sha256": "6855e8ac271bbca44efa6ce68c79d219129df957594107a45b309fef9145ee73"
+    },
+    {
+      "job": "http",
+      "returncode": 0,
+      "wall_seconds": 0.3823,
+      "script_sha256": "cf76143fd5cc9ff2df9489a069c535613f0ae557889928f04bf1cdfba4245712"
+    },
+    {
+      "job": "mailbox",
+      "returncode": 0,
+      "wall_seconds": 0.4822,
+      "script_sha256": "abf8c3a0c6da5dc8cf6f92371fa2d87740422f132a1d0b417f8e3bc335e6fa4f"
+    },
+    {
+      "job": "wiki",
+      "returncode": 0,
+      "wall_seconds": 2.951,
+      "script_sha256": "4563790463c2c619cce147fd910cb170685be88009f209679220985d62a3ca70"
+    },
+    {
+      "job": "extraction",
+      "returncode": 0,
+      "wall_seconds": 4.6654,
+      "script_sha256": "e4af8d1a8cd4b30dd0a0f6fccb69e59b071f3a304c1cd4817f517dba1f11cb90"
+    }
+  ],
+  "instrumented_job_wall_seconds": 10.6365,
+  "limits": [
+    "No actor or compromise authentication",
+    "No new capture collection",
+    "No population estimate",
+    "Source extraction repeated with same original parser; aggregation separately recomputed",
+    "Full research/model/energy costs unknown"
+  ]
+}

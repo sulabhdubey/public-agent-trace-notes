@@ -1,0 +1,1 @@
+Selected historical sample: 116 reports, 71 acquired, 42 exact programs. Of 56 recorded POST events, 13 have 2xx responses, 21 other statuses, and 22 missing statuses. These are not compromised-account or independent-agent counts.

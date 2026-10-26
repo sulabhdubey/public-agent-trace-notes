@@ -1,0 +1,145 @@
+{
+  "source_sha256": {
+    "site-coverage.csv": "1091014ca713391dd68d9c658550b2a00e15cee83e53513aa07f9b1862efda01",
+    "coverage-gaps.csv": "1f9f80864910d4c49e8ff24a35b1931b87eaeae9d1282c3efa3d6d7b0ee279dd",
+    "links.jsonl.gz": "adf65a707cde395627d0b96b5dd0a98863c91f3e14ecdf40a45f4d5e0f185351",
+    "records.jsonl.gz": "9b3cfbc87a491ccfe619098e6ee290cfaeb6d105625e23843f2671c8bd6c4bd2",
+    "revisions.jsonl.gz": "9c2a4ef0ccbfb5b42be8422342a6bd3a389a4a047bc891e3148354dd65b63c96"
+  },
+  "counts": {
+    "revisions": 14591,
+    "records": 13703,
+    "links": 23877,
+    "literal_host_values": 225,
+    "links_url_withheld": 7793,
+    "links_followed_true": 0,
+    "records_body_withheld": 38,
+    "records_hosting_text_changed": 5898,
+    "record_authorship_values": {
+      "not_independently_authenticated": 13703
+    },
+    "coverage_rows": 143,
+    "gap_rows": 110,
+    "specific_gap_true": 58,
+    "gap_rows_zero_selected_texts": 95,
+    "coverage_categories": {
+      "wikis": 30,
+      "pastebins": 37,
+      "shorteners": 23,
+      "documents": 13,
+      "relays": 23,
+      "hosting": 9,
+      "new_discord_posting_surface": 8
+    },
+    "coverage_status": {
+      "selected_agent_related_text_preserved": 48,
+      "responses_preserved_authorship_or_body_unresolved": 24,
+      "no_selected_agent_text_in_compilation": 64,
+      "response_or_reference_only": 7
+    }
+  },
+  "exact_full_body_crosswiki_filter": "At least 100 characters, contains http or case-insensitive agent, identical UTF-8 bytes, at least two wiki labels.",
+  "exact_full_body_crosswiki_groups": [
+    {
+      "sha256_utf8": "90335d44316987a2397f1813cd15d848dbfb63c6ceb250e18b1d6c284596684c",
+      "body_bytes_utf8": 308,
+      "wiki_count": 2,
+      "occurrence_span_seconds": 197.0,
+      "occurrences": [
+        {
+          "rev_id": "dse~TestPageXYZUnique@2",
+          "page_id": "dse/TestPageXYZUnique",
+          "time": "2026-06-22T02:56:43Z",
+          "label": "AgentMassResearchJuly",
+          "time_grade": "reqlog",
+          "uncertainty_seconds": 1,
+          "request_action": "form_edit",
+          "success_time": "2026-06-22T02:56:43Z",
+          "archived_at": "2026-06-26T13:44:13Z"
+        },
+        {
+          "rev_id": "dse~AgentDataUSAYearsJul9@2",
+          "page_id": "dse/AgentDataUSAYearsJul9",
+          "time": "2026-06-22T02:57:32Z",
+          "label": "[Person17]",
+          "time_grade": "reqlog",
+          "uncertainty_seconds": 1,
+          "request_action": "form_edit",
+          "success_time": "2026-06-22T02:57:32Z",
+          "archived_at": "2026-06-26T13:44:31Z"
+        },
+        {
+          "rev_id": "fractal~EN~2fDataUSAQueryBridge927@5",
+          "page_id": "fractal/EN/DataUSAQueryBridge927",
+          "time": "2026-06-22T02:58:17Z",
+          "label": "CookResearchAgent7712",
+          "time_grade": "reqlog",
+          "uncertainty_seconds": 1,
+          "request_action": "form_edit",
+          "success_time": "2026-06-22T02:58:18Z",
+          "archived_at": "2026-06-22T03:01:59Z"
+        },
+        {
+          "rev_id": "fractal~EN~2fRecentChanges@5",
+          "page_id": "fractal/EN/RecentChanges",
+          "time": "2026-06-22T03:00:00Z",
+          "label": "HelperBot928",
+          "time_grade": "reqlog",
+          "uncertainty_seconds": 1,
+          "request_action": "form_edit",
+          "success_time": "2026-06-22T03:00:00Z",
+          "archived_at": "2026-06-22T08:45:38Z"
+        }
+      ]
+    }
+  ],
+  "partial_match_record_id": "0364974f1ee736bd1aaa4e4fdab1d05c324bb3a1ec76bc512195a2ca85b66d15",
+  "partial_match_occurrences": [
+    {
+      "rev_id": "dse~AgentDataUsaBridgeAlpha@13",
+      "page_id": "dse/AgentDataUsaBridgeAlpha",
+      "time": "2026-06-22T03:18:50Z",
+      "label": "CookResearchHelperX627",
+      "time_grade": "reqlog",
+      "uncertainty_seconds": 1,
+      "request_action": "form_edit",
+      "success_time": "2026-06-22T03:18:50Z",
+      "archived_at": "2026-06-26T13:29:00Z",
+      "present_in_previous_retained_revision": false
+    },
+    {
+      "rev_id": "probier~SandBox@20",
+      "page_id": "probier/SandBox",
+      "time": "2026-06-22T03:20:57Z",
+      "label": "",
+      "time_grade": "reqlog",
+      "uncertainty_seconds": 1,
+      "request_action": "form_edit",
+      "success_time": "2026-06-22T03:20:57Z",
+      "archived_at": "2026-06-22T08:37:25Z",
+      "present_in_previous_retained_revision": false
+    },
+    {
+      "rev_id": "probier~SandBox@21",
+      "page_id": "probier/SandBox",
+      "time": "2026-06-22T08:37:25Z",
+      "label": "",
+      "time_grade": "reqlog",
+      "uncertainty_seconds": 1,
+      "request_action": "form_edit",
+      "success_time": "2026-06-22T08:37:25Z",
+      "archived_at": "2026-06-22T08:40:22Z",
+      "present_in_previous_retained_revision": true
+    }
+  ],
+  "hash_audit": {
+    "records_hosting_hash_mismatches": 0,
+    "revision_utf8_mismatches": 251,
+    "mismatch_declared_encodings": {
+      "utf8": 250,
+      "latin1": 1
+    },
+    "recovered_by_latin1_byte_encoding": 251,
+    "unresolved_revision_ids": []
+  }
+}

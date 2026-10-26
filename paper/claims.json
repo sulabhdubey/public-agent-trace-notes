@@ -1,0 +1,45 @@
+{
+  "version": "2.0",
+  "date": "2026-10-26",
+  "new_incident_established": false,
+  "new_artifact_established": false,
+  "global_priority_established": false,
+  "claims": [
+    {
+      "id": "F01",
+      "claim": "Two literal relationships across different programs: 12 reports and 2 reports.",
+      "evidence": "data/mailbox-groups.json",
+      "boundary": "No account owner, creation chain, token validity or operator authenticated."
+    },
+    {
+      "id": "F02",
+      "claim": "13 historical POST 2xx events in 13 held reports.",
+      "evidence": "data/post-events.json",
+      "boundary": "Protocol metadata is not verified compromise or application completion."
+    },
+    {
+      "id": "F03",
+      "claim": "432 review-required catalog records, including 280 dated before 2026.",
+      "evidence": "data/catalog-review.csv",
+      "boundary": "Dates and catalog classes do not authenticate earlier agent incidents."
+    },
+    {
+      "id": "F04",
+      "claim": "71 captures contain 42 exact programs; a separate held wiki export contains a 308-byte cross-wiki match.",
+      "evidence": "data/captures.json; audit-results.json",
+      "boundary": "Byte equality does not identify independent actors; public package does not redistribute wiki bodies."
+    },
+    {
+      "id": "V2-A",
+      "claim": "13 POST 2xx events span 8 exact programs.",
+      "evidence": "data/captures.json; data/post-events.json",
+      "boundary": "New summary in this revision, not a novelty or success-rate claim."
+    },
+    {
+      "id": "V2-B",
+      "claim": "22 of 56 recorded POST events have missing status.",
+      "evidence": "data/post-events.json",
+      "boundary": "Missing is unknown, not failure; observed missingness is not population prevalence."
+    }
+  ]
+}
