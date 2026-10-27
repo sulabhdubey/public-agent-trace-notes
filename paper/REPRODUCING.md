@@ -1,10 +1,10 @@
 # Replay the released annotations
 
-Version 2.1, 27 October 2026. This is an author-supplied arithmetic replay, not independent historical validation. It operates on minimized annotations; it does not collect or decode original incident payloads.
+Version 2.1.1, 27 October 2026. This is an author-supplied arithmetic replay, not independent historical validation. It operates on minimized annotations; it does not collect or decode original incident payloads.
 
 ## Start from only the distribution
 
-Extract `public-agent-trace-notes-v2.1.zip` into a new empty directory. Alternatively, use the repository's `paper/` directory. Python 3.10+ and its standard library suffice. Do not install dependencies or supply credentials. Run the following **inside the extracted directory**:
+Extract `public-agent-trace-notes-v2.1.1.zip` into a new empty directory. Alternatively, use the repository's `paper/` directory. Python 3.10+ and its standard library suffice. Do not install dependencies or supply credentials. Run the following **inside the extracted directory**:
 
 ```sh
 python -B verify.py

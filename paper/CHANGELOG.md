@@ -1,5 +1,9 @@
 # Changes
 
+## 2.1.1 - 27 October 2026
+- Clarify that an event is a recorded request entry with a response status only when available. Missing responses remain unknown.
+- Preserve all data, quantitative results, verifier behavior and tests. Regenerate the paper and versioned package; retain the v2.1 archive.
+
 ## 2.1 - 27 October 2026
 - Put the exact deliverable and verification boundary first; consolidate repeated general caveats while retaining result-specific uncertainty.
 - Add all 116 selected report IDs, including the exact 45 not acquired, recovered from the hash-bound original submission.

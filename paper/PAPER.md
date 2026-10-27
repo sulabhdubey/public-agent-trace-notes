@@ -3,7 +3,7 @@
 
 Sulabh | Independent, AI-assisted research | 27 October 2026
 
-Technical note, version 2.1 | PTA-2026-10-27-v2.1 | Not peer reviewed
+Technical note, version 2.1.1 | PTA-2026-10-27-v2.1.1 | Not peer reviewed
 
 ### Abstract
 We provide a minimized annotation dataset and a standard-library Python verifier for a selected set of historical public agent traces. The package identifies all 116 selected report IDs, distinguishes 71 acquired captures from 45 not acquired, and recomputes four tables: selection coverage, exact-program grouping, recorded POST statuses and catalog-review years. The acquired captures contain 42 exact programs; thirteen POST 2xx events span eight programs, while 22 of 56 recorded POST events lack a response status. Two cross-program literal relationships and a separate wiki comparison are supplied as scoped annotations. Readers can replay the aggregate arithmetic from the released metadata; raw-source extraction and independent historical validation are outside that replay. The contribution is an inspectable dataset and evidence account, not a new forensic method or a newly discovered incident.
@@ -21,7 +21,7 @@ We provide a minimized annotation dataset and a standard-library Python verifier
 ## 1. Question and contribution
 The question is: **what does the available public evidence support, and what additional evidence would justify a stronger conclusion?** The practical result is a compact artifact that lets researchers inspect the annotations, recompute headline tables and identify coverage gaps before interpreting a trace.
 
-The September 27 report is the predecessor. Version 2.0 rechecked its calculations, added program-level and missing-response summaries, and updated related work through October 26. Version 2.1 makes the complete selected cohort inspectable and adds direct table output. The original submission and both earlier versions remain preserved.
+The September 27 report is the predecessor. Version 2.0 rechecked its calculations, added program-level and missing-response summaries, and updated related work through October 26. Version 2.1 makes the complete selected cohort inspectable and adds direct table output. Version 2.1.1 clarifies that the event unit does not require a recorded response status; data and quantitative findings are unchanged. The original submission and earlier versions remain preserved.
 
 The evidence classes must remain separate:
 
@@ -57,7 +57,7 @@ Slocum and colleagues' September 18 reproduction study uses simplified environme
 
 The capture cohort was selected from catalog entries marked significant but without an identified source, after excluding already named or specifically characterized entries. It is not a random sample. It is also distinct from the 432 review-required catalog rows. Consequently, no sampling-based prevalence estimate or population confidence interval is appropriate.
 
-A **report** is a capture record. A **program** is an exact decoded byte sequence. An **event** is a historical request/response entry inside a capture. A **parameter relationship** compares supported literal values. None is an agent count. There may be multiple events per report, multiple reports per program, and multiple programs per parameter pair.
+A **report** is a capture record. A **program** is an exact decoded byte sequence. An **event** is a recorded request entry within a capture, with a response status when available. A **parameter relationship** compares supported literal values. None is an agent count. There may be multiple events per report, multiple reports per program, and multiple programs per parameter pair.
 
 Acquisition coverage is 71/116 (61.2%) for this selected list. `data/capture-selection.csv` lists every ID and labels it `acquired` or `not_acquired`; the latter means absent from the held set, not unavailable today. The ledger was reconstructed from the original submission's input manifest and access-gap list, with member hashes in `data/selection-provenance.json`. The verifier checks that the 71 acquired IDs exactly match `data/captures.json`. Reasons for individual non-acquisition are not established. Response missingness within acquired captures is a separate coverage limitation.
 

@@ -1,5 +1,5 @@
 # What public agent traces can tell a platform team
-## A companion to PTA-2026-10-27-v2.1
+## A companion to PTA-2026-10-27-v2.1.1
 
 27 October 2026 | Proposed defensive checks, not a security certification
 

@@ -39,7 +39,7 @@ The package contains the paper, brief, claim ledger, all 116 selection IDs, 71 b
 Prior-analysis pointers; redaction-aware overlap checks against the larger corpus; and source-custodian clarification of catalog provenance or response semantics. Please do not post credentials, private logs or operational payloads in an issue or pull request. [Security and disclosure policy](SECURITY.md).
 
 ## Status
-Version 2.1, 27 October 2026. AI-assisted, not peer reviewed. The repository's visibility determines current availability; the files themselves do not certify publication or endorsement. [Changes](CHANGELOG.md).
+Version 2.1.1, 27 October 2026. AI-assisted, not peer reviewed. The repository's visibility determines current availability; the files themselves do not certify publication or endorsement. [Changes](CHANGELOG.md).
 
 ## Rights
 Original prose and analysis code are supplied for review. No open-source or content license has yet been granted. Third-party material remains under its original terms. Choose a license before calling this repository open source; no raw third-party corpus is redistributed here.

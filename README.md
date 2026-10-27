@@ -12,7 +12,7 @@ An annotation dataset and technical note on historical incident-related agent tr
 | [Replay guide](paper/REPRODUCING.md) | Commands, expected tables and the exact missing-capture list |
 | [Governance brief](paper/GOVERNANCE_BRIEF.md) · [PDF](paper/governance-brief.pdf) | Questions for platform telemetry and review |
 | [Evidence appendix](paper/EVIDENCE_APPENDIX.md) · [PDF](paper/evidence-appendix.pdf) | Coverage, provenance and verification levels |
-| [Complete v2.1 ZIP](distribution/public-agent-trace-notes-v2.1.zip) · [SHA-256](distribution/public-agent-trace-notes-v2.1.sha256) | The exact 27-file distribution |
+| [Complete v2.1.1 ZIP](distribution/public-agent-trace-notes-v2.1.1.zip) · [SHA-256](distribution/public-agent-trace-notes-v2.1.1.sha256) | The exact 27-file distribution |
 | [Claim ledger](paper/claims.json) · [Sources](paper/SOURCES.md) | Evidence bindings and prior work |
 
 ## What the dataset shows
@@ -37,7 +37,9 @@ Save command output outside `paper/`: the integrity check rejects unlisted files
 
 ## Verification status
 
-Version **2.1 · 27 October 2026**. An author-run replay from a freshly extracted ZIP passed all four commands and 22 tests. A separate arithmetic implementation agreed with the four tables, the absent-ID list and the paper's POST/year table cells. See [release checks](RELEASE_CHECKS.md).
+Version 2.1.1 clarifies the event unit: a recorded request entry within a capture, with a response status when available. The data and quantitative findings are unchanged; earlier ZIPs remain in `distribution/`.
+
+Version **2.1.1 · 27 October 2026**. An author-run replay from a freshly extracted ZIP passed all four commands and 22 tests. A separate arithmetic implementation agreed with the four tables, the absent-ID list and the paper's POST/year table cells. See [release checks](RELEASE_CHECKS.md).
 
 This is AI-assisted work and has not been peer reviewed or independently reproduced by another investigator. Hashes establish byte identity, not source truth or discovery priority. [Revision history](paper/CHANGELOG.md).
 

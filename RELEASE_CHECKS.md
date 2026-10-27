@@ -1,4 +1,19 @@
-# Release checks: v2.1
+# Release checks: v2.1.1
+
+27 October 2026. Editorial clarification following reader feedback. These are author-run artifact checks, not independent investigator validation or peer review.
+
+- Archive SHA-256: `6fe77fd6e4ea1fd34a131f3a23e473aaf5f82ed5e6566ec1e1d99d8590365d03`; 27 files, 165247 bytes.
+- The manuscript now defines an event as a recorded request entry with a response status when available. The PDF contains the same definition.
+- All eight data files, verifier, tests, source list, security policy and historical audit receipt are byte-identical to v2.1. The claim entries are unchanged; only their package version is updated.
+- Fresh-package verifier, table output, missing-ID output and all 22 tests passed. A separately implemented arithmetic check agreed with all four tables and the manuscript's POST/year table cells. The Python audit guard is not OS sandbox qualification.
+- The paper remains eight pages; the governance brief and evidence appendix remain two pages each. Regenerated PDFs were rendered and visually inspected. Poppler reported missing optional Symbol/ArialUnicode display fonts; the rendered pages showed no missing text or layout damage.
+- Five disclosure-pattern categories and comparison against four supported source-literal pairs found no release matches. These are scoped checks, not a universal security guarantee.
+- Earlier versioned ZIPs and Git history remain preserved. No new capture acquisition, incident-code execution or change to findings occurred.
+- Instrumented fresh-package replay commands totaled 1.6159 seconds. Research, preparation, rendering, publication, failed attempts, model usage and energy are outside that subtotal.
+
+The v2.1.1 publication scan used Gitleaks 8.30.1 with default rules, no ignored findings and inline suppression disabled. The current tree scan flagged three copies of the same source-file SHA-256: the provenance field and its v2.1/v2.1.1 archive copies. Every flagged field was checked against the exact original archive member. Reachable-history findings were checked the same way; extracted current PDF text had no detections. No confirmed credential was identified. No raw scanner report or private source material is included in this repository.
+
+## Preserved v2.1 release record
 
 27 October 2026. These are author-run artifact checks, not independent investigator validation, peer review or a security certification.
 
