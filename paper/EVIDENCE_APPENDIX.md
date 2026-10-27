@@ -4,6 +4,8 @@
 | File | Content | What its reproduction establishes |
 |---|---|---|
 | data/captures.json | Report ID, report date, input digest, exact-program digest, decoded length | Held inventory and exact-byte grouping |
+| data/capture-selection.csv | All 116 selected IDs and acquisition labels | Exact membership of 71 acquired and 45 not-acquired captures |
+| data/selection-provenance.json | Original archive/member hashes and construction | Lineage of the coverage ledger; not new capture collection |
 | data/post-events.json | Parent report ID, recorded time, public endpoint class and response status | Event census and missingness |
 | data/catalog-review.csv | 432 IDs, report dates and broad classes | Year/class distributions; not attribution |
 | data/mailbox-groups.json | Opaque pair labels and report/program relationships | Public relationship metadata; literal equality requires held raw inputs |
@@ -12,24 +14,19 @@
 | audit-results.json | October re-extraction and aggregation receipt | What was run locally and its limitations |
 | claims.json | Claim, evidence and explicit non-claim | Scope of publication assertions |
 
-## Reproduction levels
+## Verification levels
 1. Public package integrity: verify the SHA-256 inventory. A maliciously changed package and manifest can agree; the manifest is not a signature or trusted attestation.
-2. Public arithmetic: recompute groups, statuses and catalog-year counts using the included minimized tables.
+2. Released-metadata arithmetic: `verify.py --tables` recomputes selection coverage, program grouping, statuses and catalog-year counts. `--missing` lists the 45 absent IDs. See REPRODUCING.md for commands and expected results.
 3. Held-source re-extraction: six original scripts were inspected and executed locally against hash-matched original inputs. Capture observations are semantically identical. Those raw inputs are not redistributed because they can contain credentials or executable content.
 4. Independent authentication: not completed. Actor identity, authorization, application-level effect, complete corpus overlap and novelty remain outside these checks.
 
-The original extraction implementation is reused at level 3. The new public aggregator is separately implemented. Neither provides independent historical data collection.
-
-## Historical timeline checks
-On June 19, report dates for the first mailbox relationship span 12:29:38 to 12:49:35 UTC. Recorded account POST error events precede three later token POST 200 events. On June 14, the second relationship spans 22:58:10 to 23:22:19 UTC. Dates describe different evidence fields; temporal proximity does not prove causation.
-
-The catalog queue spans September 22, 2023 through September 9, 2026. Its older records remain unresolved metadata, not an earlier-incident discovery. Forty-three indirection candidates concentrate on May 11-12, 2026; their payload bodies remain unreviewed.
+The original extraction implementation is reused at level 3. The public aggregator is separately implemented, but all checks so far belong to the same research workflow. A fresh-directory package replay is an author-run usability and arithmetic check, not another investigator's reproduction. Complete catalog/wiki totals are preserved audit receipts rather than recalculated from the released subsets.
 
 ## Tests and correction
-The original census recognized a fixed set of status codes. The revised public predicate recognizes integer statuses 200 through 299, including valid codes absent from this sample. Tests cover POST versus OPTIONS, missing values, redirects, invalid types, duplicate IDs, orphan events and tampered package members. These fixtures test the verifier, not the behavior or safety of agents.
+The original census recognized a fixed set of status codes. The public predicate recognizes statuses 200 through 299, including valid codes absent from this sample. Tests cover POST versus OPTIONS, missing values, redirects, invalid types, duplicate IDs, orphan events and tampered package members. Version 2.1 adds selection-set reconciliation and actual table-generation checks: absent/acquired contradictions, duplicate selection IDs, invalid labels, integer/string status grouping, a changed status and a changed year. These fixtures test the verifier's changed behavior.
 
 ## Reproducibility limits
-The smaller package intentionally cannot recreate credential-literal equality from scratch. It exposes the relationship membership and source hashes so an authorized holder of the same original captures can compare results. No reader should obtain, authenticate with or test credentials to validate the paper. The 45 missing captures and complete Swarm Traces overlap remain open.
+The package cannot recreate credential-literal equality from scratch. It exposes relationship membership and source hashes for comparison by an authorized source holder. No reader should obtain or test credentials to validate the paper. All 45 absent capture IDs are now identified; their contents and complete Swarm Traces overlap remain open.
 
 ## Earlier leads retained as negative or limited findings
 The predecessor examined additional leads that did not justify a discovery claim. They are retained here to prevent repeated work or selective reporting:

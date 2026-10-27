@@ -1,6 +1,6 @@
 {
-  "version": "2.0",
-  "date": "2026-10-26",
+  "version": "2.1",
+  "date": "2026-10-27",
   "new_incident_established": false,
   "new_artifact_established": false,
   "global_priority_established": false,
@@ -40,6 +40,12 @@
       "claim": "22 of 56 recorded POST events have missing status.",
       "evidence": "data/post-events.json",
       "boundary": "Missing is unknown, not failure; observed missingness is not population prevalence."
+    },
+    {
+      "id": "V2.1-C",
+      "claim": "All 116 selected report IDs are enumerated: 71 acquired and 45 not acquired.",
+      "evidence": "data/capture-selection.csv; data/selection-provenance.json",
+      "boundary": "Historical held-sample coverage, not current availability; raw captures remain excluded."
     }
   ]
 }

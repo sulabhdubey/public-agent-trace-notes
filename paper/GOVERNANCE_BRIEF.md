@@ -1,7 +1,7 @@
 # What public agent traces can tell a platform team
-## A two-page companion to PTA-2026-10-26-v2
+## A companion to PTA-2026-10-27-v2.1
 
-26 October 2026 | Proposed defensive checks, not a security certification
+27 October 2026 | Proposed defensive checks, not a security certification
 
 ### The useful result
 In a selected historical sample, 71 captures represent 42 exact programs. Thirteen recorded POST 2xx events cover eight programs. Twenty-two of 56 recorded POST events have no response status. These are trace annotations, not thirteen compromised accounts or authenticated operators.
@@ -37,7 +37,7 @@ OWASP's current agentic-security material provides a vocabulary for tool misuse,
 ### A proportionate review request
 The most useful response is one redacted corroborating fact, a corrected interpretation or a prior-analysis pointer. No credentials, private customer data or live probing are requested. The paper supplies an offline verifier and metadata sufficient to check its descriptive counts.
 
-The work should be presented as a reproducible technical note and discussion input. No previously unknown incident, novel artifact, worldwide first discovery or independent endorsement is claimed.
+The companion package provides four replayable aggregate tables and identifies all 45 unacquired captures. Its verification boundary is explained at the start of the paper.
 
 ### Suggested order of implementation
 Start by checking whether the current telemetry can distinguish a missing response from a denied operation. Next, verify a positive and a rejected application operation on an owned test system. Then test the actual stop-and-reconcile path, including delegated work. Only after those checks should a broader detection or compliance claim be considered.

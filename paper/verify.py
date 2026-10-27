@@ -1,6 +1,6 @@
 """Offline inventory and arithmetic checks. No network or external dependencies."""
 from pathlib import Path, PurePosixPath
-import collections, csv, hashlib, json, re, sys
+import argparse, collections, csv, hashlib, json, re, sys
 ROOT=Path(__file__).resolve().parent
 UUID=re.compile(r'^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$')
 SHA=re.compile(r'^[0-9a-f]{64}$')
@@ -13,6 +13,38 @@ def is_2xx(value):
  if isinstance(value,bool):return False
  if isinstance(value,int):return 200<=value<=299
  return isinstance(value,str) and bool(re.fullmatch(r'2[0-9]{2}',value))
+def status_key(value):
+ if value is None or value=='':return 'Missing'
+ require(type(value) is int or isinstance(value,str),'Invalid HTTP status type')
+ require(re.fullmatch(r'[1-5][0-9]{2}',str(value)) is not None,'Invalid HTTP status value')
+ return str(value)
+def selection_summary(selection,captures):
+ require(isinstance(selection,list) and len(selection)<=1000,'Bad selection list')
+ require(all(set(r)=={'report_id','acquisition_status'} for r in selection),'Invalid selection columns')
+ require(all(UUID.fullmatch(r['report_id']) for r in selection),'Invalid selection ID')
+ require(len({r['report_id'] for r in selection})==len(selection),'Duplicate selection ID')
+ require(all(r['acquisition_status'] in {'acquired','not_acquired'} for r in selection),'Invalid acquisition status')
+ held={r['report_id'] for r in selection if r['acquisition_status']=='acquired'}
+ require(held=={r['report_id'] for r in captures},'Selection and acquired capture IDs disagree')
+ absent=sorted(r['report_id'] for r in selection if r['acquisition_status']=='not_acquired')
+ return {'selected':len(selection),'acquired':len(held),'not_acquired':len(absent),'not_acquired_report_ids':absent}
+def headline_tables(captures,events,rows,selection):
+ coverage=selection_summary(selection,captures)
+ programs=collections.Counter(r['program_sha256'] for r in captures)
+ statuses=collections.Counter(status_key(e['status']) for e in events if e['method']=='POST')
+ years=collections.Counter(r['date'][:4] for r in rows)
+ return {'selection':{k:coverage[k] for k in ('selected','acquired','not_acquired')},
+  'programs':{'captures':len(captures),'exact_programs':len(programs),'duplicate_groups':sum(n>1 for n in programs.values()),'reports_in_duplicate_groups':sum(n for n in programs.values() if n>1),'singleton_programs':sum(n==1 for n in programs.values()),'repeated_captures':sum(n-1 for n in programs.values())},
+  'post_statuses':dict(sorted(statuses.items())),'catalog_years':dict(sorted(years.items()))}
+def markdown_tables(tables):
+ titles={'selection':'Selection coverage (section 3)','programs':'Exact-program grouping (section 5.4)','post_statuses':'Recorded POST statuses (section 5.2)','catalog_years':'Catalog provenance queue (section 5.3)'}
+ parts=[]
+ for key,rows in tables.items():
+  parts.extend(['## '+titles[key],'','| Item | Count |','|---|---:|'])
+  parts.extend('| '+str(k)+' | '+str(v)+' |' for k,v in rows.items())
+  if key in {'post_statuses','catalog_years'}:parts.append('| Total | '+str(sum(rows.values()))+' |')
+  parts.append('')
+ return '\n'.join(parts)
 def summarize(captures,events,rows):
  require(isinstance(captures,list) and len(captures)<=1000,'Bad capture list')
  require(isinstance(events,list) and len(events)<=10000,'Bad event list')
@@ -24,6 +56,7 @@ def summarize(captures,events,rows):
  require(all(e['report_id'] in ids for e in events),'Orphan event')
  require(len({r['report_id'] for r in rows})==len(rows),'Duplicate catalog IDs')
  posts=[e for e in events if e['method']=='POST']
+ for e in posts:status_key(e['status'])
  success=[e for e in posts if is_2xx(e['status'])]
  programs={r['report_id']:r['program_sha256'] for r in captures}
  groups=collections.Counter(programs.values())
@@ -44,10 +77,22 @@ def verify_inventory(root):
   require(hashlib.sha256(path.read_bytes()).hexdigest()==expected,'Hash mismatch: '+name)
  return len(manifest)
 def main():
+ parser=argparse.ArgumentParser(description=__doc__)
+ mode=parser.add_mutually_exclusive_group()
+ mode.add_argument('--tables',action='store_true',help='Print the four derived headline tables as Markdown')
+ mode.add_argument('--missing',action='store_true',help='Print the exact not-acquired report IDs as JSON')
+ args=parser.parse_args()
  members=verify_inventory(ROOT)
  with (ROOT/'data/catalog-review.csv').open(encoding='utf-8',newline='') as f:rows=list(csv.DictReader(f))
- result=summarize(load(ROOT/'data/captures.json'),load(ROOT/'data/post-events.json'),rows)
+ with (ROOT/'data/capture-selection.csv').open(encoding='utf-8',newline='') as f:selection=list(csv.DictReader(f))
+ captures=load(ROOT/'data/captures.json');events=load(ROOT/'data/post-events.json')
+ result=summarize(captures,events,rows)
  expected={'captures':71,'programs':42,'duplicate_groups':8,'repeated_captures':29,'post_events':56,'post_reports':48,'post_2xx':13,'post_2xx_reports':13,'post_2xx_programs':8,'post_missing_status':22,'review_rows':432,'review_years':{'2023':113,'2024':56,'2025':111,'2026':152}}
  require(result==expected,'Claim aggregate mismatch')
- print(json.dumps({'verified_members':members,'results':result,'scope':'Package integrity and arithmetic only; not authentication, attribution or novelty.'},indent=2))
+ coverage=selection_summary(selection,captures)
+ require((coverage['selected'],coverage['acquired'],coverage['not_acquired'])==(116,71,45),'Selection count mismatch')
+ tables=headline_tables(captures,events,rows,selection)
+ if args.tables:print(markdown_tables(tables))
+ elif args.missing:print(json.dumps(coverage['not_acquired_report_ids'],indent=2))
+ else:print(json.dumps({'verified_members':members,'results':result,'selection':coverage,'tables':tables,'scope':'Released-metadata integrity and arithmetic only; raw extraction and independent historical validation are not performed.'},indent=2))
 if __name__=='__main__':main()

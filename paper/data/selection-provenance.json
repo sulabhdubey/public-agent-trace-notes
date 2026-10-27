@@ -1,0 +1,14 @@
+{
+  "scope": "Original selected cohort, not present-day availability; no reason for individual non-acquisition is asserted. No new reports were retrieved.",
+  "source_archive_sha256": "ad322de9706d24c50a55e79bfb48c1c3a6f2342b88cfbaf45cd7b4390d31ebcd",
+  "source_members_sha256": {
+    "capture-access-gaps.json": "37a91f2aa06b1859561bbf4b7fde3ff40b3a004bd99817fc94134be2021592ea",
+    "capture-summary.json": "5e4219baca7e2d004ea60bb0e45f784b4c22f005f8322c4d0064de3f039ca6df",
+    "research-input-manifest.json": "2f84d793d18aa5c5e3f3a0ee96b22aecc76a1e16b1b48c88e74824a515c17cb0"
+  },
+  "construction": "Union of the 71 report IDs in the original input manifest and 45 IDs in capture-access-gaps.json; compared with released captures and original selection_size.",
+  "columns": {
+    "report_id": "Public capture identifier; no payload or credential content.",
+    "acquisition_status": "acquired: included in captures.json; not_acquired: absent from the held capture set. Raw capture bodies are not in either release."
+  }
+}

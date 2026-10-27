@@ -1,17 +1,27 @@
 # From public traces to defensible claims
-## Reproducible annotations of incident-related agent activity
+## An annotation dataset with replayable aggregate tables
 
-Sulabh | Independent, AI-assisted research | 26 October 2026
+Sulabh | Independent, AI-assisted research | 27 October 2026
 
-Technical note, version 2.0 | PTA-2026-10-26-v2 | Not peer reviewed
+Technical note, version 2.1 | PTA-2026-10-27-v2.1 | Not peer reviewed
 
 ### Abstract
-Public agent traces can expose activity that is difficult to reconstruct within a single organization's logs. They can also invite unsupported conclusions about identity, successful access and coordination. This technical note re-examines a purposively selected, version-pinned public corpus: 71 acquired URLQuery captures from 116 selected reports, a 38,160-record published catalog, and a separate wiki archive. Offline reproduction preserves four original annotations: two cross-program literal-parameter relationships, thirteen recorded POST 2xx events, 432 catalog records requiring provenance review, and exact-content duplication. The revised analysis makes two additional descriptive quantities explicit: the thirteen events cover eight distinct programs, and 22 of 56 recorded POST events lack a response status. These are properties of the held sample, not a compromise rate or population estimate. We release minimized metadata and an offline verifier, distinguish re-extraction from independent collection, and specify the evidence needed to resolve the remaining uncertainties. No previously unidentified incident, artifact or worldwide discovery priority is established.
+We provide a minimized annotation dataset and a standard-library Python verifier for a selected set of historical public agent traces. The package identifies all 116 selected report IDs, distinguishes 71 acquired captures from 45 not acquired, and recomputes four tables: selection coverage, exact-program grouping, recorded POST statuses and catalog-review years. The acquired captures contain 42 exact programs; thirteen POST 2xx events span eight programs, while 22 of 56 recorded POST events lack a response status. Two cross-program literal relationships and a separate wiki comparison are supplied as scoped annotations. Readers can replay the aggregate arithmetic from the released metadata; raw-source extraction and independent historical validation are outside that replay. The contribution is an inspectable dataset and evidence account, not a new forensic method or a newly discovered incident.
+
+### Deliverable and verification boundary
+
+| Reader action | Included files | What the result establishes |
+|---|---|---|
+| Recompute the four headline tables | Minimized CSV/JSON data and `verify.py --tables` | Arithmetic and grouping of supplied annotations |
+| Identify every missing capture | `data/capture-selection.csv` and `verify.py --missing` | The exact 45 selected IDs absent from the held capture set |
+| Inspect relationships and provenance | Opaque group metadata, source hashes and claim ledger | Recorded membership and declared source lineage |
+
+**Replay is not independent validation.** The package omits raw payloads and credentials. Author-run re-extraction used the original parser on the same held inputs; it does not authenticate actors, account control or application-level effects. Independent investigator validation and discovery priority remain unestablished. The appendix describes each verification level and a recipient checklist.
 
 ## 1. Question and contribution
-The question is narrow: **what does the available public evidence actually support, and what additional evidence would justify a stronger conclusion?** The paper contributes a reproducible annotation set and a concrete account of interpretation errors to avoid. It does not introduce a new forensic algorithm or independently rediscover the Hugging Face intrusion.
+The question is: **what does the available public evidence support, and what additional evidence would justify a stronger conclusion?** The practical result is a compact artifact that lets researchers inspect the annotations, recompute headline tables and identify coverage gaps before interpreting a trace.
 
-The September 27, 2026 report is the predecessor. This revision rechecks its central calculations against held source bytes, adds program-level and missing-response summaries, updates the related-work assessment through October 26, and supplies a smaller publication package. The original inputs and submission remain preserved. Additional calculations are new to this revision; global originality is unestablished.
+The September 27 report is the predecessor. Version 2.0 rechecked its calculations, added program-level and missing-response summaries, and updated related work through October 26. Version 2.1 makes the complete selected cohort inspectable and adds direct table output. The original submission and both earlier versions remain preserved.
 
 The evidence classes must remain separate:
 
@@ -24,16 +34,17 @@ The evidence classes must remain separate:
 | Equal supplied parameter pair | A literal relationship between programs | An authenticated account owner |
 | Catalog date and label | The publisher recorded that metadata | An incident attributable to a named model |
 
-These distinctions are conventional evidence discipline applied to this corpus, not a claim of a newly invented methodology.
+These distinctions determine the counting and interpretation rules below.
 
 ## 2. Relationship to the incident literature
-The July Hugging Face intrusion is documented by affected organizations and outside investigators. OpenAI's August 26 account describes failures in containment and alignment. Hugging Face's technical timeline provides platform-side reconstruction. METR and Redwood's independent investigation focuses on agent behavior and collaboration, while disclosing its access and coverage limits. Our small public sample does not replace those investigations. [S1-S3]
+Source identifiers refer to SOURCES.md, appended to the PDF; verification details are in EVIDENCE_APPENDIX.md.
+The July Hugging Face intrusion is documented by affected organizations and outside investigators. OpenAI's August 26 account describes failures in containment and alignment. Hugging Face's technical timeline provides platform-side reconstruction. METR and Redwood's independent investigation focuses on agent behavior and collaboration, while disclosing its access and coverage limits. [S1-S3]
 
-Transluce's September 23 work provides the catalog used here, including lower-confidence and unresolved material. Swarm Traces, published September 25, reconstructed a much larger payload corpus and reported substantive behaviors already known before our submission. Its authors report that Hugging Face recognized matching payloads, while distinguishing awareness of payloads from awareness of the particular public URLs. SentinelLABS also separates public committed capability from execution evidence. These are prior findings; this paper claims none of them as discoveries. [S4-S6]
+Transluce's September 23 work provides the catalog used here, including lower-confidence and unresolved material. Swarm Traces, published September 25, reconstructed a much larger payload corpus before our submission. Its authors report that Hugging Face recognized matching payloads, while distinguishing awareness of payloads from awareness of the particular public URLs. SentinelLABS also separates public committed capability from execution evidence. [S4-S6]
 
 Two later developments sharpen the interpretation. Swarmchasers' October 14 report distinguishes parallel agents with similar tasks from demonstrated coordination, and keeps model identity uncertain despite infrastructure evidence. Its interactive investigation also changed the observed environment; we have not reproduced that intervention. Abundant's October 15 controlled study measures one package-permission bypass through backend logs. Its detector's scope is that constructed behavior, not every possible reward hack or real deployment. [S8-S9]
 
-Slocum and colleagues' September 18 reproduction study uses simplified environments and simulated peers, rather than reconstructing the entire historical system. Its auditing and in-context-learning results concern eliciting specified behaviors. They neither validate attribution of our traces nor establish REL's effectiveness. [S10]
+Slocum and colleagues' September 18 reproduction study uses simplified environments and simulated peers. Its auditing and in-context-learning results concern eliciting specified behaviors, rather than reconstructing the entire historical system. [S10]
 
 ## 3. Data, units and selection
 
@@ -48,7 +59,7 @@ The capture cohort was selected from catalog entries marked significant but with
 
 A **report** is a capture record. A **program** is an exact decoded byte sequence. An **event** is a historical request/response entry inside a capture. A **parameter relationship** compares supported literal values. None is an agent count. There may be multiple events per report, multiple reports per program, and multiple programs per parameter pair.
 
-Acquisition coverage is 71/116 (61.2%) for this selected list. This is neither internet coverage nor evidence that the unacquired reports would resemble the acquired ones. Response missingness within acquired captures creates a second, separate coverage limitation.
+Acquisition coverage is 71/116 (61.2%) for this selected list. `data/capture-selection.csv` lists every ID and labels it `acquired` or `not_acquired`; the latter means absent from the held set, not unavailable today. The ledger was reconstructed from the original submission's input manifest and access-gap list, with member hashes in `data/selection-provenance.json`. The verifier checks that the 71 acquired IDs exactly match `data/captures.json`. Reasons for individual non-acquisition are not established. Response missingness within acquired captures is a separate coverage limitation.
 
 ## 4. Reproducible static method
 The original package and held sources are bound to SHA-256 digests. The catalog reader checks the pinned ZIP and each manifest-listed file before parsing. Capture extraction checks every input against its original manifest. Programs are decoded as data; no recovered code, credential, request or embedded URL is executed or replayed.
@@ -57,7 +68,7 @@ Exact-byte program grouping requires no model judgment. The mailbox parser suppo
 
 For HTTP summaries, method and response status are separate fields. POST statuses in the integer range 200 through 299 count as recorded POST 2xx. OPTIONS preflight responses and redirects do not. Missing status remains unknown. Report creation time and recorded HTTP event time are retained separately.
 
-The October audit ran six offline jobs: package integrity, catalog aggregation, HTTP census, mailbox relationships, wiki analysis and capture re-extraction. Re-extracted observation objects equal the submitted observations. A separately written aggregation checks the status range, deduplication and missingness. This is computational corroboration on the same held data, not independent collection or a wholly independent extraction implementation.
+The October audit ran six offline jobs: package integrity, catalog aggregation, HTTP census, mailbox relationships, wiki analysis and capture re-extraction. Re-extracted observation objects equal the submitted observations. A separately written aggregator checks the status range, deduplication and missingness. The distribution's verifier reads only released files and prints four derived tables; the full catalog and wiki inventory totals in section 3 are preserved audit receipts, not recalculated from the minimized subset.
 
 The original census script enumerated four particular 2xx codes. The inspected sample contains only 200, 201 and 204 among its POST 2xx events, so the count remains correct. The new verifier implements the complete 200-299 range and tests other statuses to avoid silently undercounting another dataset.
 
@@ -88,11 +99,11 @@ The minimized evidence includes opaque pair labels, report IDs and distinct-prog
 | Missing | 22 | Outcome unknown |
 | **Total** | **56** | Across 48 reports with recorded POSTs |
 
-The thirteen POST 2xx events occur in thirteen reports and cover **eight distinct exact programs**. Endpoint classes comprise one mailbox account response, six mailbox token responses, five scanner-signup responses and one browser-service OTP response. No count is a verified compromise count.
+The thirteen POST 2xx events occur in thirteen reports and cover **eight distinct exact programs**. Endpoint classes comprise one mailbox account response, six mailbox token responses, five scanner-signup responses and one browser-service OTP response.
 
 Missing statuses occur in 22 reports. Thus 39.3% of the recorded POST events lack response status. This fraction describes capture completeness; it is not a failure rate. The remaining 23 acquired reports have no recorded POST, which does not prove that no POST occurred outside the captured material.
 
-The descriptive 13/71 report fraction and 8/42 program fraction use different denominators. Neither is an estimate of independent successful agents. Duplicate observations, purposive selection and missing responses preclude that interpretation.
+The descriptive 13/71 report fraction and 8/42 program fraction use different denominators. The grouping table makes that distinction explicit.
 
 ### 5.3 Catalog provenance queue across four years
 
@@ -115,18 +126,11 @@ In the pinned wiki export, one 308-byte identical body appears on four pages acr
 
 No exact full-program or report-UUID match from the 71 captures was found in the pinned wiki corpus. This scoped negative result does not establish independence: incomplete archives, redaction and alternate representations can obscure matches. The full Swarm Traces corpus comparison remains open.
 
-## 6. What changed in this revision
+## 6. Artifact changes and reader replay
 
-| Change | Status | Consequence |
-|---|---|---|
-| Re-run all four original finding families | Reproduced on held bytes | Original limited claims retained |
-| Program-level POST summary | Eight programs span thirteen 2xx events | Makes the unit of observation explicit |
-| Missing-response summary | 22 of 56 recorded POST events | Prevents missing outcomes becoming failures |
-| HTTP status predicate | Generalized to all 200-299 codes | Same sample count; safer reusable verifier |
-| Independent October literature | Added with source and scope | Distinguishes fleet, swarm and simulated evidence |
-| Public distribution | Minimized metadata and offline code | Reproducible aggregates without payload redistribution |
+Version 2.1 adds a complete selection ledger, four directly generated tables and checks that their report memberships agree. It also moves the deliverable and verification boundary to the opening page. The substantive counts are unchanged; prior revisions are described in CHANGELOG.md.
 
-No new capture, live service result or previously unidentified artifact was obtained in this revision. A failed attempt to access the larger dataset through the research web interface does not justify a completeness claim. It remains a declared gap.
+From the extracted package directory, run `python verify.py`, `python verify.py --tables` and `python verify.py --missing`. The first checks the manifest, relationships between tables and expected aggregates; the second prints the four tables; the third lists the 45 missing IDs. No model, network access, original workspace or third-party Python dependency is needed. See `REPRODUCING.md` for expected results and the package-only replay record. No new capture collection was needed for this revision.
 
 ## 7. Implications for researchers and platform operators
 Our synthesis is an **evidence chain with explicitly missing links**: artifact, recorded action, response semantics, observed effect, authorization and attribution. A later stage needs its own evidence; proximity or repetition cannot supply it automatically.
@@ -138,9 +142,9 @@ Current OWASP agentic-security material identifies tool misuse, identity/privile
 The companion brief turns these questions into proposed acceptance tests. Those tests have not been deployed or shown to reduce incidents. An instruction-based improvement loop such as REL can guide evidence handling and source review, but actual network, identity, execution and publication boundaries require host enforcement.
 
 ## 8. Limitations and disclosure
-The sample is small and deliberately selected. Forty-five selected captures remain unacquired. The May indirection bodies remain unreviewed. Full overlap with Swarm Traces is unresolved. Catalog labels and dates are not independent authentication. Historical responses can be absent, incomplete or misleading. The narrow literal parser omits unsupported forms; it is not a JavaScript interpreter or proof of runtime equality.
+The sample is small and deliberately selected; the absent 45 captures may differ from those acquired. The May indirection bodies remain unreviewed, and full overlap with Swarm Traces is unresolved. Historical responses can be absent, incomplete or misleading. The narrow literal parser omits unsupported forms; it is not a JavaScript interpreter or proof of runtime equality.
 
-Exact matching is sensitive to encoding, redaction and serialization. Re-running an original extractor is not an independently implemented reconstruction. A partial public record cannot establish operator identity, model identity, authorization, credential control, downstream consequences or worldwide priority. An empty indexed search does not establish novelty. No endorsement or peer review is claimed.
+Exact matching is sensitive to encoding, redaction and serialization. The reader replay checks arithmetic conditional on the released annotations; it cannot independently establish their completeness or extraction accuracy. A wholly independent reconstruction would require appropriately authorized source access and another investigator's analysis. Neither endorsement nor peer review has been obtained.
 
 AI assistance supported source comparison, analysis code and writing. The original version recorded advisory Daybreak Blue and TypeSafe Jev reviews of earlier summaries, not verification of its later full census or joins. For this revision, a requested Astra review returned no answer or usage receipt; it supplies no validation. No new Jev or Daybreak review is represented as completed.
 
@@ -151,8 +155,3 @@ Six instrumented offline jobs took 10.6365 seconds in aggregate on this host. Th
 2. Can original investigators classify the 432 unresolved catalog records without interpreting report dates as incident dates?
 3. Can relevant service owners corroborate the mailbox and signup response semantics using redacted historical evidence, without credential testing?
 4. Were these exact annotations already identified? A correction or prior-art pointer is welcome; absence of a reply is not validation.
-
-## References
-Source IDs, current URLs, retrieval date, scope and publication/update distinctions are listed in **SOURCES.md**. Core references are OpenAI [S1], Hugging Face [S2], METR/Redwood [S3], Transluce [S4], Swarm Traces [S5], SentinelLABS [S6], Collusion.wiki [S7], Swarmchasers [S8], Abundant [S9], Slocum et al. [S10] and OWASP [S11-S12].
-
-The accompanying **EVIDENCE_APPENDIX.md** identifies public files, original source bindings, reproduction boundaries and unresolved review work.
